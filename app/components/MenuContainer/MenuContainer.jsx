@@ -2,8 +2,6 @@ import React from 'react';
 
 import MenuItem from 'MenuItem';
 
-
-
 class MenuContainer extends React.Component {
 	constructor(props) {
 		super(props);

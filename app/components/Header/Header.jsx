@@ -10,7 +10,7 @@ import React from 'react';
 		var style = {
 			backgroundColor:'#2E8B57',
 			height: '10%',
-      marginBottom: '0.5%',
+      		marginBottom: '0.5%',
 			width: '100%'
 		}
 
