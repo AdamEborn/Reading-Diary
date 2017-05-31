@@ -1,15 +1,14 @@
 import React from 'react';
 
 import MenuItem from 'MenuItem';
+import SearchDisplay from 'SearchDisplay';
+
 import googleRequests from 'googleRequests';
 
 
 class SearchForm extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			results: []
-		}
 		this.onSearch = this.onSearch.bind(this);
 }
 
@@ -17,9 +16,6 @@ class SearchForm extends React.Component {
 		e.preventDefault();
 		googleRequests.search(this.refs.searchTerm.value).then((response) => {
 			console.log(response.items);
-			this.setState({
-				results: this.state.results.concat(response.items)
-			});
 			this.extrapolateResults(response.items);
 
 		}), ((error) =>{
@@ -29,6 +25,7 @@ class SearchForm extends React.Component {
 	}
 extrapolateResults(arr) {
 		function Book(objInArr) {
+			this.link = objInArr.selfLink;
 			this.bookTitle = objInArr.volumeInfo.title;
 			this.author = objInArr.volumeInfo.authors;
 			this.bookDescription = objInArr.volumeInfo.description;
@@ -51,14 +48,15 @@ extrapolateResults(arr) {
 			finalRes.push(obj);
 		})
 	console.log(finalRes)
-	return finalRes
+	return finalRes;
 }
+
 	render() {
 		var style = {
 			border: '1px solid black',
 			float: 'left',
-			height: '20rem',
-			width: '100%'
+			height: '100%',
+			width: '30%'
 		}
 
 		return(
@@ -67,9 +65,14 @@ extrapolateResults(arr) {
 					<input type="text" placeholder="search name here" ref="searchTerm"/>
 					<input type="submit" className="button" value="Get Book"/>
 				</form>
+				<SearchDisplay content={results}></SearchDisplay>
 			</div>
 			);
 	}
 };
 
 export default SearchForm;
+
+//TODO: get individual <Result> to render based on each obj in finalRes arr. ?Pass as props?
+
+

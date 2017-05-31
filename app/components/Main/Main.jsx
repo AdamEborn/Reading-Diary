@@ -1,20 +1,16 @@
 import React from 'react';
-
-import Header from 'Header';
-import MenuContainer from 'MenuContainer';
-import Display from 'Display';
+import NavBar from 'NavBar';
 
 class Main extends React.Component{
   constructor(props) {
     super(props);
   }
-  
+
   render() {
     return (
       <div>
-          <Header></Header>
-          <MenuContainer></MenuContainer>
-          <Display></Display>
+        <NavBar></NavBar>
+        {this.props.children}
       </div>
     )
   }
