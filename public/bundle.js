@@ -25055,7 +25055,6 @@
 				var _this2 = this;
 
 				_googleRequests2.default.search(searchTerm).then(function (response) {
-					console.log(response.items);
 					_this2.extrapolateResults(response.items);
 				}), function (error) {
 					console.log(error);
@@ -25066,12 +25065,24 @@
 			value: function extrapolateResults(arr) {
 				function Book(objInArr) {
 					this.link = objInArr.selfLink;
-					this.bookTitle = objInArr.volumeInfo.title;
-					this.author = objInArr.volumeInfo.authors;
-					this.bookDescription = objInArr.volumeInfo.description;
+					this.bookTitle = _react2.default.createElement(
+						'span',
+						null,
+						objInArr.volumeInfo.title
+					);
+					this.author = _react2.default.createElement(
+						'span',
+						null,
+						objInArr.volumeInfo.authors
+					);
+					this.bookDescription = _react2.default.createElement(
+						'span',
+						null,
+						objInArr.volumeInfo.description
+					);
 					this.thumbnail = function () {
 						if (objInArr.volumeInfo.hasOwnProperty('imageLinks')) {
-							return objInArr.volumeInfo.imageLinks.smallThumbnail;
+							return _react2.default.createElement('img', { src: objInArr.volumeInfo.imageLinks.smallThumbnail });
 						} else {
 							return "No Thumbnail Available";
 						}
@@ -26133,11 +26144,13 @@
 				var tableStyle = {};
 
 				var rowStyle = {
-					border: '1px solid black'
+					border: '1px solid black',
+					borderBottom: '1px solid blue',
+					width: '100%'
 				};
 
 				var thumbCell = {
-					width: '50px',
+					width: '150px',
 					borderRight: '1px solid green'
 				};
 
@@ -26148,13 +26161,14 @@
 					width: '83%'
 				};
 
-				var displayData = this.props.content.map(function (book) {
+				var displayData = this.props.content.map(function (book, index) {
+					console.log(index);
 					return _react2.default.createElement(
 						'div',
 						null,
 						_react2.default.createElement(
 							'table',
-							{ style: rowStyle },
+							{ style: rowStyle, key: index },
 							_react2.default.createElement(
 								'tbody',
 								null,
@@ -26163,23 +26177,18 @@
 									{ rowSpan: '3', style: rowStyle },
 									_react2.default.createElement(
 										'td',
-										{ style: thumbCell, key: book.thumbnailPic },
-										' ',
-										book.thumbnailPic,
-										' '
+										{ style: thumbCell, key: book.thumbnailPic.toString() },
+										book.thumbnailPic
 									),
 									_react2.default.createElement(
 										'td',
 										null,
-										' Title: '
+										'Title:'
 									),
-									' ',
 									_react2.default.createElement(
 										'td',
-										{ key: book.title },
-										' ',
-										book.title,
-										' '
+										null,
+										book.bookTitle
 									)
 								),
 								_react2.default.createElement(
@@ -26188,15 +26197,12 @@
 									_react2.default.createElement(
 										'td',
 										null,
-										' Author: '
+										'Author:'
 									),
-									' ',
 									_react2.default.createElement(
 										'td',
 										{ key: book.author },
-										' ',
-										book.author,
-										' '
+										book.author
 									)
 								),
 								_react2.default.createElement(
@@ -26205,15 +26211,26 @@
 									_react2.default.createElement(
 										'td',
 										null,
-										' Description: '
+										' Description:'
 									),
+									_react2.default.createElement(
+										'td',
+										null,
+										book.bookDescription
+									)
+								),
+								_react2.default.createElement(
+									'tr',
+									null,
 									' ',
 									_react2.default.createElement(
 										'td',
-										{ key: book.description },
-										' ',
-										book.description,
-										' '
+										null,
+										_react2.default.createElement(
+											'a',
+											{ href: book.link },
+											'Read More...'
+										)
 									)
 								)
 							)

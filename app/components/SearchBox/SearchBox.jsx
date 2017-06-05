@@ -14,7 +14,6 @@ class SearchBox extends React.Component {
 }
 	handleSearch(searchTerm) {
 		googleRequests.search(searchTerm).then((response) => {
-			console.log(response.items);
 			this.extrapolateResults(response.items);
 		}), ((error) =>{
 			console.log(error)
@@ -24,12 +23,12 @@ class SearchBox extends React.Component {
 	extrapolateResults(arr) {
 		function Book(objInArr) {
 			this.link = objInArr.selfLink;
-			this.bookTitle = objInArr.volumeInfo.title;
-			this.author = objInArr.volumeInfo.authors;
-			this.bookDescription = objInArr.volumeInfo.description;
+			this.bookTitle = <span>{objInArr.volumeInfo.title}</span>;
+			this.author = <span>{objInArr.volumeInfo.authors}</span>;
+			this.bookDescription = <span>{objInArr.volumeInfo.description}</span>;
 			this.thumbnail = function() {
 				if (objInArr.volumeInfo.hasOwnProperty('imageLinks')){
-				return objInArr.volumeInfo.imageLinks.smallThumbnail
+				return (<img src={objInArr.volumeInfo.imageLinks.smallThumbnail}/>)
 			} 
 			else {
 				return "No Thumbnail Available";
