@@ -12,9 +12,9 @@ module.exports = {
       SearchForm: 'app/Components/SearchForm/SearchForm.jsx',
       googleRequests: 'app/api/googleRequests.jsx',
       SearchDisplay: 'app/Components/SearchDisplay/SearchDisplay.jsx',
+      SearchBox: 'app/Components/SearchBox/SearchBox.jsx',
       Main: 'app/Components/Main/Main.jsx',
-      NavBar: 'app/Components/NavBar/NavBar.jsx',
-      Result: 'app/Components/Result/Result.jsx'
+      NavBar: 'app/Components/NavBar/NavBar.jsx'
     },
     extensions: ['', '.js', '.jsx']
   },

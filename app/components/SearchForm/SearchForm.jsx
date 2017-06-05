@@ -1,55 +1,19 @@
 import React from 'react';
-
-import MenuItem from 'MenuItem';
-import SearchDisplay from 'SearchDisplay';
-
-import googleRequests from 'googleRequests';
-
+import PropTypes from 'prop-types';
 
 class SearchForm extends React.Component {
 	constructor(props) {
 		super(props);
-		this.onSearch = this.onSearch.bind(this);
-}
 
-	onSearch(e) {
+}
+	onFormSubmit(e) {
 		e.preventDefault();
-		googleRequests.search(this.refs.searchTerm.value).then((response) => {
-			console.log(response.items);
-			this.extrapolateResults(response.items);
-
-		}), ((error) =>{
-			console.log(error)
-		});
-		this.refs.searchTerm.value = '';
+		var searchTerm = this.refs.searchTerm.value;
+		if (searchTerm.length > 0) {
+			this.refs.searchTerm.value = '';
+      		this.props.onSearch(searchTerm);
+		}
 	}
-extrapolateResults(arr) {
-		function Book(objInArr) {
-			this.link = objInArr.selfLink;
-			this.bookTitle = objInArr.volumeInfo.title;
-			this.author = objInArr.volumeInfo.authors;
-			this.bookDescription = objInArr.volumeInfo.description;
-			this.thumbnail = function() {
-				if (objInArr.volumeInfo.hasOwnProperty('imageLinks')){
-				return objInArr.volumeInfo.imageLinks.smallThumbnail
-			} 
-			else {
-				return "No Thumbnail Available";
-			}
-		};
-			this.thumbnailPic = this.thumbnail();
-
-	}
-		
-	var finalRes = [];
-	var initRes = arr;
-		initRes.forEach(function (objInArr) {
-			var obj = new Book(objInArr);
-			finalRes.push(obj);
-		})
-	console.log(finalRes)
-	return finalRes;
-}
 
 	render() {
 		var style = {
@@ -61,18 +25,19 @@ extrapolateResults(arr) {
 
 		return(
 			<div style={style} className="container">
-				<form onSubmit={this.onSearch}>
+				<form onSubmit={this.onFormSubmit.bind(this)}>
 					<input type="text" placeholder="search name here" ref="searchTerm"/>
 					<input type="submit" className="button" value="Get Book"/>
 				</form>
-				<SearchDisplay content={results}></SearchDisplay>
 			</div>
 			);
 	}
 };
 
-export default SearchForm;
+SearchForm.propTypes = {
+	onSearch: PropTypes.func
+}
 
-//TODO: get individual <Result> to render based on each obj in finalRes arr. ?Pass as props?
+export default SearchForm;
 
 
