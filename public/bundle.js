@@ -26145,13 +26145,18 @@
 
 				var rowStyle = {
 					border: '1px solid black',
-					borderBottom: '1px solid blue',
-					width: '100%'
+					borderBottom: '1px solid blue'
 				};
 
 				var thumbCell = {
 					width: '150px',
 					borderRight: '1px solid green'
+				};
+
+				var nonThumbCell = {
+					borderBottom: '1px solid green',
+					height: '20px'
+
 				};
 
 				var style = {
@@ -26162,13 +26167,12 @@
 				};
 
 				var displayData = this.props.content.map(function (book, index) {
-					console.log(index);
 					return _react2.default.createElement(
 						'div',
-						null,
+						{ key: index },
 						_react2.default.createElement(
 							'table',
-							{ style: rowStyle, key: index },
+							null,
 							_react2.default.createElement(
 								'tbody',
 								null,
@@ -26177,12 +26181,12 @@
 									{ rowSpan: '3', style: rowStyle },
 									_react2.default.createElement(
 										'td',
-										{ style: thumbCell, key: book.thumbnailPic.toString() },
+										{ style: thumbCell },
 										book.thumbnailPic
 									),
 									_react2.default.createElement(
 										'td',
-										null,
+										{ style: nonThumbCell },
 										'Title:'
 									),
 									_react2.default.createElement(
@@ -26201,7 +26205,7 @@
 									),
 									_react2.default.createElement(
 										'td',
-										{ key: book.author },
+										null,
 										book.author
 									)
 								),

@@ -12,13 +12,18 @@ class SearchDisplay extends React.Component {
 
 		var rowStyle = {
 			border: '1px solid black',
-			borderBottom: '1px solid blue',
-			width: '100%'
+			borderBottom: '1px solid blue'
 		}
 
 		var thumbCell = {
 			width: '150px',
 			borderRight: '1px solid green'
+		}
+
+		var nonThumbCell = {
+			borderBottom: '1px solid green',
+			height: '20px'
+
 		}
 
 		var style = {
@@ -29,17 +34,16 @@ class SearchDisplay extends React.Component {
 		}
 
 		var displayData = this.props.content.map(function(book, index) {
-			console.log(index)
 			return (
-				<div>
-				<table style={rowStyle} key={index}>
+				<div key={index}>
+				<table>
 				<tbody>
 					<tr rowSpan="3" style={rowStyle}> 
-						<td style={thumbCell} key={book.thumbnailPic.toString()}>{book.thumbnailPic}</td> 
-						<td>Title:</td><td>{book.bookTitle}</td>
+						<td style={thumbCell}>{book.thumbnailPic}</td> 
+						<td style={nonThumbCell}>Title:</td><td>{book.bookTitle}</td>
 					</tr>
 					<tr style={rowStyle}>
-						<td>Author:</td><td key={book.author}>{book.author}</td>
+						<td>Author:</td><td>{book.author}</td>
 					</tr>
 					<tr style={rowStyle}>
 						<td> Description:</td><td>{book.bookDescription}</td>
