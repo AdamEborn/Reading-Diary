@@ -8,22 +8,22 @@ class SearchDisplay extends React.Component {
 	}
 
 	render() {
-		var tableStyle = {}
-
-		var rowStyle = {
-			border: '1px solid black',
-			borderBottom: '1px solid blue'
+		var imageBorder = {
+			borderRight: '1px solid black',
 		}
 
-		var thumbCell = {
-			width: '150px',
-			borderRight: '1px solid green'
+		var textField = {
+			borderBottom: '1px solid black'
 		}
 
-		var nonThumbCell = {
-			borderBottom: '1px solid green',
-			height: '20px'
+		var textFieldRight = {
+			borderBottom: '1px solid black',
+			borderRight: '1px solid black',
+			paddingLeft: '10px'
+		}
 
+		var textFieldBottom = {
+			paddingLeft: '10px'
 		}
 
 		var style = {
@@ -33,29 +33,36 @@ class SearchDisplay extends React.Component {
 			width: '83%'
 		}
 
+		var tableStyle = {
+			border: '1px solid black',
+			borderCollapse: 'collapse',
+			height: '150px',
+			width: '100%'
+		}
+
 		var displayData = this.props.content.map(function(book, index) {
 			return (
 				<div key={index}>
-				<table>
+				<table style={tableStyle}>
 				<tbody>
-					<tr rowSpan="3" style={rowStyle}> 
-						<td style={thumbCell}>{book.thumbnailPic}</td> 
-						<td style={nonThumbCell}>Title:</td><td>{book.bookTitle}</td>
+					<tr > 
+						<td rowSpan="4" style={imageBorder}>{book.thumbnailPic}</td> 
+						<td style={textField}>Title:</td><td style={textFieldRight}>{book.bookTitle}</td>
 					</tr>
-					<tr style={rowStyle}>
-						<td>Author:</td><td>{book.author}</td>
+					<tr>
+						<td style={textField}>Author:</td><td style={textFieldRight}>{book.author}</td>
 					</tr>
-					<tr style={rowStyle}>
-						<td> Description:</td><td>{book.bookDescription}</td>
+					<tr>
+						<td style={textField}> Description:</td><td style={textFieldRight}>{book.bookDescription}</td>
 					</tr>
-					<tr> <td><a href={book.link}>Read More...</a></td></tr>
+					<tr> <td style={textFieldBottom}><a href={book.link}>Read More...</a></td></tr>
 					</tbody>
 				</table>
 			</div>
 				)
 		}) 
 			return (
-			<div style={style}>
+			<div>
 				{displayData}
 			</div>)	
 }; 
