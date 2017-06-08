@@ -8,6 +8,7 @@ class SearchDisplay extends React.Component {
 	}
 
 	render() {
+
 		var tableStyle = {
 			border: '1px solid black',
 			borderCollapse: 'collapse'
@@ -15,18 +16,11 @@ class SearchDisplay extends React.Component {
 
 		var rowStyle = {
 			border: '1px solid black'
-		}
-
-		var thumbCell = {
-			width: '150px',
-			borderRight: '1px solid green'
-		}
 
 		var nonThumbCell = {
 			height: '20px',
 			paddingLeft: '5px'
 
-		}
 
 		var style = {
 			border: '1px solid black',
@@ -34,6 +28,11 @@ class SearchDisplay extends React.Component {
 			height: '80%',
 			width: '83%'
 		}
+
+		var thumbCell = {
+			width: '150px'
+		}
+
 
 		var displayData = this.props.content.map(function(book, index) {
 			return (
@@ -60,7 +59,7 @@ class SearchDisplay extends React.Component {
 				)
 		}) 
 			return (
-			<div style={style}>
+			<div>
 				{displayData}
 			</div>)	
 }; 
