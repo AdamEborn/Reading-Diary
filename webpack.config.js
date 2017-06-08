@@ -7,14 +7,13 @@ module.exports = {
   resolve: {
     root: __dirname,
     alias: {
-      MenuContainer: 'app/Components/MenuContainer/MenuContainer.jsx',
-      MenuItem: 'app/Components/MenuItem/MenuItem.jsx',
       SearchForm: 'app/Components/SearchForm/SearchForm.jsx',
       googleRequests: 'app/api/googleRequests.jsx',
       SearchDisplay: 'app/Components/SearchDisplay/SearchDisplay.jsx',
       SearchBox: 'app/Components/SearchBox/SearchBox.jsx',
       Main: 'app/Components/Main/Main.jsx',
-      NavBar: 'app/Components/NavBar/NavBar.jsx'
+      NavBar: 'app/Components/NavBar/NavBar.jsx',
+      Wishlist: 'app/Components/Wishlist/Wishlist.jsx'
     },
     extensions: ['', '.js', '.jsx']
   },

@@ -27,6 +27,7 @@ import {Link, IndexLink} from 'react-router';
 				<ul style={list}>
 					<li><IndexLink to="/" style={linkStyle}>Main Page</IndexLink></li>
 					<li> <Link to="/search" style={linkStyle}>Search</Link></li>
+					<li> <Link to="/wishlist" style={linkStyle}>Wishlist</Link></li>
 				</ul>
 			</div>
 			);

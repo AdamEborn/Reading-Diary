@@ -8,11 +8,13 @@ class SearchDisplay extends React.Component {
 	}
 
 	render() {
-		var tableStyle = {}
+		var tableStyle = {
+			border: '1px solid black',
+			borderCollapse: 'collapse'
+		}
 
 		var rowStyle = {
-			border: '1px solid black',
-			borderBottom: '1px solid blue'
+			border: '1px solid black'
 		}
 
 		var thumbCell = {
@@ -21,8 +23,8 @@ class SearchDisplay extends React.Component {
 		}
 
 		var nonThumbCell = {
-			borderBottom: '1px solid green',
-			height: '20px'
+			height: '20px',
+			paddingLeft: '5px'
 
 		}
 
@@ -36,21 +38,24 @@ class SearchDisplay extends React.Component {
 		var displayData = this.props.content.map(function(book, index) {
 			return (
 				<div key={index}>
-				<table>
+				<br/>
+				<table style={tableStyle}>
 				<tbody>
-					<tr rowSpan="3" style={rowStyle}> 
-						<td style={thumbCell}>{book.thumbnailPic}</td> 
-						<td style={nonThumbCell}>Title:</td><td>{book.bookTitle}</td>
+					<tr style={rowStyle}> 
+						<td rowSpan="4" style={thumbCell}>{book.thumbnailPic}</td> 
+						<td style={nonThumbCell}><strong>Title:</strong></td>
+						<td style={nonThumbCell}>{book.bookTitle}</td>
 					</tr>
 					<tr style={rowStyle}>
-						<td>Author:</td><td>{book.author}</td>
+						<td style={nonThumbCell}><strong>Author:</strong></td><td style={nonThumbCell}>{book.author}</td>
 					</tr>
 					<tr style={rowStyle}>
-						<td> Description:</td><td>{book.bookDescription}</td>
+						<td style={nonThumbCell}> <strong>Description:</strong></td><td style={nonThumbCell}>{book.bookDescription}</td>
 					</tr>
-					<tr> <td><a href={book.link}>Read More...</a></td></tr>
+					<tr style={rowStyle}> <td style={nonThumbCell}><a href={book.link}>Read More...</a></td></tr>
 					</tbody>
 				</table>
+				<br/>
 			</div>
 				)
 		}) 

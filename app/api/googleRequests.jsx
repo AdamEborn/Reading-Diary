@@ -11,20 +11,5 @@ module.exports = {
 		}).catch((error) => {
 			console.log(error);
 		})
-
 	}
 };
-
-/*
-_.each(response.data.items, function() {
-
-} )*/
-
-/*			
-	var resultRange = [];
-	for(var i = 0; i < 5; i++) {
-		resultRange.push(response.data.items[i].volumeInfo)
-		}
-
-
-		*/

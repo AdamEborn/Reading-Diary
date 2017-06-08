@@ -64,6 +64,10 @@
 
 	var _SearchBox2 = _interopRequireDefault(_SearchBox);
 
+	var _Wishlist = __webpack_require__(259);
+
+	var _Wishlist2 = _interopRequireDefault(_Wishlist);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	_reactDom2.default.render(_react2.default.createElement(
@@ -72,7 +76,8 @@
 		_react2.default.createElement(
 			_reactRouter.Route,
 			{ path: '/', component: _Main2.default },
-			_react2.default.createElement(_reactRouter.Route, { path: 'search', component: _SearchBox2.default })
+			_react2.default.createElement(_reactRouter.Route, { path: 'search', component: _SearchBox2.default }),
+			_react2.default.createElement(_reactRouter.Route, { path: 'wishlist', component: _Wishlist2.default })
 		)
 	), document.getElementById('app'));
 
@@ -24986,6 +24991,16 @@
 								{ to: '/search', style: linkStyle },
 								'Search'
 							)
+						),
+						_react2.default.createElement(
+							'li',
+							null,
+							' ',
+							_react2.default.createElement(
+								_reactRouter.Link,
+								{ to: '/wishlist', style: linkStyle },
+								'Wishlist'
+							)
 						)
 					)
 				);
@@ -25064,22 +25079,17 @@
 			key: 'extrapolateResults',
 			value: function extrapolateResults(arr) {
 				function Book(objInArr) {
-					this.link = objInArr.selfLink;
-					this.bookTitle = _react2.default.createElement(
-						'span',
-						null,
-						objInArr.volumeInfo.title
-					);
-					this.author = _react2.default.createElement(
-						'span',
-						null,
-						objInArr.volumeInfo.authors
-					);
-					this.bookDescription = _react2.default.createElement(
-						'span',
-						null,
-						objInArr.volumeInfo.description
-					);
+					this.link = objInArr.volumeInfo.infoLink;
+					this.bookTitle = objInArr.volumeInfo.title;
+					this.author = objInArr.volumeInfo.authors;
+					this.bookDescriptionAssigner = function () {
+						if (objInArr.volumeInfo.hasOwnProperty('description')) {
+							return objInArr.volumeInfo.description.substring(0, 350) + "...";
+						} else {
+							return "No Description Available";
+						}
+					};
+					this.bookDescription = this.bookDescriptionAssigner();
 					this.thumbnail = function () {
 						if (objInArr.volumeInfo.hasOwnProperty('imageLinks')) {
 							return _react2.default.createElement('img', { src: objInArr.volumeInfo.imageLinks.smallThumbnail });
@@ -26141,11 +26151,13 @@
 		_createClass(SearchDisplay, [{
 			key: 'render',
 			value: function render() {
-				var tableStyle = {};
+				var tableStyle = {
+					border: '1px solid black',
+					borderCollapse: 'collapse'
+				};
 
 				var rowStyle = {
-					border: '1px solid black',
-					borderBottom: '1px solid blue'
+					border: '1px solid black'
 				};
 
 				var thumbCell = {
@@ -26154,8 +26166,8 @@
 				};
 
 				var nonThumbCell = {
-					borderBottom: '1px solid green',
-					height: '20px'
+					height: '20px',
+					paddingLeft: '5px'
 
 				};
 
@@ -26170,28 +26182,33 @@
 					return _react2.default.createElement(
 						'div',
 						{ key: index },
+						_react2.default.createElement('br', null),
 						_react2.default.createElement(
 							'table',
-							null,
+							{ style: tableStyle },
 							_react2.default.createElement(
 								'tbody',
 								null,
 								_react2.default.createElement(
 									'tr',
-									{ rowSpan: '3', style: rowStyle },
+									{ style: rowStyle },
 									_react2.default.createElement(
 										'td',
-										{ style: thumbCell },
+										{ rowSpan: '4', style: thumbCell },
 										book.thumbnailPic
 									),
 									_react2.default.createElement(
 										'td',
 										{ style: nonThumbCell },
-										'Title:'
+										_react2.default.createElement(
+											'strong',
+											null,
+											'Title:'
+										)
 									),
 									_react2.default.createElement(
 										'td',
-										null,
+										{ style: nonThumbCell },
 										book.bookTitle
 									)
 								),
@@ -26200,12 +26217,16 @@
 									{ style: rowStyle },
 									_react2.default.createElement(
 										'td',
-										null,
-										'Author:'
+										{ style: nonThumbCell },
+										_react2.default.createElement(
+											'strong',
+											null,
+											'Author:'
+										)
 									),
 									_react2.default.createElement(
 										'td',
-										null,
+										{ style: nonThumbCell },
 										book.author
 									)
 								),
@@ -26214,22 +26235,27 @@
 									{ style: rowStyle },
 									_react2.default.createElement(
 										'td',
-										null,
-										' Description:'
+										{ style: nonThumbCell },
+										' ',
+										_react2.default.createElement(
+											'strong',
+											null,
+											'Description:'
+										)
 									),
 									_react2.default.createElement(
 										'td',
-										null,
+										{ style: nonThumbCell },
 										book.bookDescription
 									)
 								),
 								_react2.default.createElement(
 									'tr',
-									null,
+									{ style: rowStyle },
 									' ',
 									_react2.default.createElement(
 										'td',
-										null,
+										{ style: nonThumbCell },
 										_react2.default.createElement(
 											'a',
 											{ href: book.link },
@@ -26238,7 +26264,8 @@
 									)
 								)
 							)
-						)
+						),
+						_react2.default.createElement('br', null)
 					);
 				});
 				return _react2.default.createElement(
@@ -26279,20 +26306,6 @@
 			});
 		}
 	};
-
-	/*
-	_.each(response.data.items, function() {
-
-	} )*/
-
-	/*			
-		var resultRange = [];
-		for(var i = 0; i < 5; i++) {
-			resultRange.push(response.data.items[i].volumeInfo)
-			}
-
-
-			*/
 
 /***/ }),
 /* 230 */
@@ -29816,6 +29829,60 @@
 	  };
 	};
 
+
+/***/ }),
+/* 259 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Wishlist = function (_React$Component) {
+		_inherits(Wishlist, _React$Component);
+
+		function Wishlist(props) {
+			_classCallCheck(this, Wishlist);
+
+			return _possibleConstructorReturn(this, (Wishlist.__proto__ || Object.getPrototypeOf(Wishlist)).call(this, props));
+		}
+
+		_createClass(Wishlist, [{
+			key: 'render',
+			value: function render() {
+
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'span',
+						null,
+						'wishlist will go here'
+					)
+				);
+			}
+		}]);
+
+		return Wishlist;
+	}(_react2.default.Component);
+
+	exports.default = Wishlist;
 
 /***/ })
 /******/ ]);

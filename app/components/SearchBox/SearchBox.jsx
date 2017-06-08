@@ -22,10 +22,18 @@ class SearchBox extends React.Component {
 
 	extrapolateResults(arr) {
 		function Book(objInArr) {
-			this.link = objInArr.selfLink;
-			this.bookTitle = <span>{objInArr.volumeInfo.title}</span>;
-			this.author = <span>{objInArr.volumeInfo.authors}</span>;
-			this.bookDescription = <span>{objInArr.volumeInfo.description}</span>;
+			this.link = objInArr.volumeInfo.infoLink;
+			this.bookTitle = objInArr.volumeInfo.title;
+			this.author = objInArr.volumeInfo.authors;
+			this.bookDescriptionAssigner = function() {
+				if (objInArr.volumeInfo.hasOwnProperty('description')){
+					return (objInArr.volumeInfo.description.substring(0, 350) + "...")
+				} 
+			else {
+				return "No Description Available";
+				}
+			}
+			this.bookDescription = this.bookDescriptionAssigner();
 			this.thumbnail = function() {
 				if (objInArr.volumeInfo.hasOwnProperty('imageLinks')){
 				return (<img src={objInArr.volumeInfo.imageLinks.smallThumbnail}/>)
@@ -47,7 +55,6 @@ class SearchBox extends React.Component {
 		searchResults: finalRes
 	})
 	console.log(finalRes, this.state.searchResults)
-
 	}
 
 
