@@ -27772,12 +27772,11 @@
 
 				var thumbCell = {
 					borderRight: '1px solid black',
-					width: '150px'
+					width: '120px'
 				};
 
 				var bottomNonThumbCell = {
 					borderRight: '1px solid black',
-					height: '20px',
 					paddingLeft: '5px'
 				};
 
@@ -27811,13 +27810,8 @@
 									),
 									_react2.default.createElement(
 										'td',
-										{ style: nonThumbCell },
+										{ colSpan: '2', style: nonThumbCell },
 										book.bookTitle
-									),
-									_react2.default.createElement(
-										'td',
-										{ style: thumbCell, rowSpan: '4' },
-										'Add To Wishlist'
 									)
 								),
 								_react2.default.createElement(
@@ -27834,7 +27828,7 @@
 									),
 									_react2.default.createElement(
 										'td',
-										{ style: nonThumbCell },
+										{ colSpan: '2', style: nonThumbCell },
 										book.author
 									)
 								),
@@ -27853,14 +27847,13 @@
 									),
 									_react2.default.createElement(
 										'td',
-										{ style: nonThumbCell },
+										{ colSpan: '2', style: nonThumbCell },
 										book.bookDescription
 									)
 								),
 								_react2.default.createElement(
 									'tr',
 									{ style: rowStyle },
-									' ',
 									_react2.default.createElement(
 										'td',
 										{ style: bottomNonThumbCell },
@@ -27868,6 +27861,24 @@
 											'a',
 											{ href: book.link },
 											'Read More...'
+										)
+									),
+									_react2.default.createElement(
+										'td',
+										{ style: bottomNonThumbCell },
+										_react2.default.createElement(
+											'span',
+											null,
+											'Add to Wishlist'
+										)
+									),
+									_react2.default.createElement(
+										'td',
+										{ style: bottomNonThumbCell },
+										_react2.default.createElement(
+											'span',
+											null,
+											'Add to Read List'
 										)
 									)
 								)
