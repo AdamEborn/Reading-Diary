@@ -3,14 +3,14 @@ import React from 'react';
 import SearchForm from 'SearchForm';
 import SearchDisplay from 'SearchDisplay';
 import googleRequests from 'googleRequests';
-
+import * as firebase from 'firebase';
 class SearchBox extends React.Component {
 	constructor() {
 		super();
 		this.state = {
 			searchResults: []
 		}
-		
+
 }
 	handleSearch(searchTerm) {
 		googleRequests.search(searchTerm).then((response) => {
@@ -28,7 +28,7 @@ class SearchBox extends React.Component {
 			this.bookDescriptionAssigner = function() {
 				if (objInArr.volumeInfo.hasOwnProperty('description')){
 					return (objInArr.volumeInfo.description.substring(0, 350) + "...")
-				} 
+				}
 			else {
 				return "No Description Available";
 				}
@@ -37,7 +37,7 @@ class SearchBox extends React.Component {
 			this.thumbnail = function() {
 				if (objInArr.volumeInfo.hasOwnProperty('imageLinks')){
 				return (<img src={objInArr.volumeInfo.imageLinks.smallThumbnail}/>)
-			} 
+			}
 			else {
 				return "No Thumbnail Available";
 			}

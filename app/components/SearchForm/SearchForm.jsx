@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import * as firebase from 'firebase';
 class SearchForm extends React.Component {
 	constructor(props) {
 		super(props);
@@ -11,7 +11,7 @@ class SearchForm extends React.Component {
 		var searchTerm = this.refs.searchTerm.value;
 		if (searchTerm.length > 0) {
 			this.refs.searchTerm.value = '';
-      		this.props.onSearch(searchTerm);
+      this.props.onSearch(searchTerm);
 		}
 	}
 
@@ -41,5 +41,3 @@ SearchForm.propTypes = {
 }
 
 export default SearchForm;
-
-

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, IndexLink} from 'react-router';
-
+import * as firebase from 'firebase';
  class NavBar extends React.Component {
 	constructor(props) {
 		super(props);
