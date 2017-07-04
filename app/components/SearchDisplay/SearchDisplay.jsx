@@ -1,14 +1,27 @@
 import React from 'react';
-var firebase = require('firebase/database');
+var firebase = require('firebase/app');
+require('firebase/auth');
+require('firebase/database');
 
 import SearchForm from 'SearchForm';
 
 class SearchDisplay extends React.Component {
 	constructor(props) {
-		super(props)
+		super(props);
+		this.saveBookToWishlist = this.saveBookToWishlist.bind(this)
 	}
 
-
+	saveBookToWishlist(bookToSave) {
+		var firebaseRef = firebase.database().ref();
+		var savedBook = {
+			title: bookToSave.bookTitle,
+			author: bookToSave.author,
+			description: bookToSave.bookDescription,
+			link: bookToSave.link
+				}
+		var wishRef = firebaseRef.child('wishlist');
+		wishRef.push(savedBook);
+	}
 
 	render() {
 
@@ -41,12 +54,6 @@ class SearchDisplay extends React.Component {
 		}
 
 		var displayData = this.props.content.map(function(book, index) {
-			var book = book;
-			function saveBookToWishlist(book) {
-				var firebaseRef = firebase.database().ref();
-				var wishRef = firebaseRef.child('wishlist');
-				wishRef.push(book);
-			}
 			return (
 				<div key={index}>
 				<br/>
@@ -68,14 +75,14 @@ class SearchDisplay extends React.Component {
 					<tr style={rowStyle}>
 						<td style={bottomNonThumbCell}><a href={book.link}>Read More...</a></td>
 						<td style={bottomNonThumbCell}><span>Add to Wishlist</span></td>
-						<td style={bottomNonThumbCell}><span onClick={saveBookToWishlist(book)}>Add to Read List</span></td>
+						<td style={bottomNonThumbCell}><span onClick={this.saveBookToWishlist(book)}>Add to Read List</span></td>
 					</tr>
 					</tbody>
 				</table>
 				<br/>
 			</div>
 				)
-		})
+		}, this)
 			return (
 			<div>
 				{displayData}
