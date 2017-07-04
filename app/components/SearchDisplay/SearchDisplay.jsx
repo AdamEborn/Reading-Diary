@@ -8,19 +8,17 @@ import SearchForm from 'SearchForm';
 class SearchDisplay extends React.Component {
 	constructor(props) {
 		super(props);
-		this.saveBookToWishlist = this.saveBookToWishlist.bind(this)
 	}
 
 	saveBookToWishlist(bookToSave) {
-		var firebaseRef = firebase.database().ref();
+		console.log(bookToSave)
 		var savedBook = {
 			title: bookToSave.bookTitle,
 			author: bookToSave.author,
 			description: bookToSave.bookDescription,
 			link: bookToSave.link
-				}
-		var wishRef = firebaseRef.child('wishlist');
-		wishRef.push(savedBook);
+		}
+		firebase.database().ref().child('wishlist').push(savedBook);
 	}
 
 	render() {
@@ -75,7 +73,7 @@ class SearchDisplay extends React.Component {
 					<tr style={rowStyle}>
 						<td style={bottomNonThumbCell}><a href={book.link}>Read More...</a></td>
 						<td style={bottomNonThumbCell}><span>Add to Wishlist</span></td>
-						<td style={bottomNonThumbCell}><span onClick={this.saveBookToWishlist(book)}>Add to Read List</span></td>
+						<td style={bottomNonThumbCell}><span onClick={this.saveBookToWishlist.bind(this, book)}>Add to Read List</span></td>
 					</tr>
 					</tbody>
 				</table>

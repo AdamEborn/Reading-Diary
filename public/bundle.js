@@ -29840,25 +29840,20 @@
 
 		function SearchDisplay(props) {
 			(0, _classCallCheck3.default)(this, SearchDisplay);
-
-			var _this = (0, _possibleConstructorReturn3.default)(this, (SearchDisplay.__proto__ || (0, _getPrototypeOf2.default)(SearchDisplay)).call(this, props));
-
-			_this.saveBookToWishlist = _this.saveBookToWishlist.bind(_this);
-			return _this;
+			return (0, _possibleConstructorReturn3.default)(this, (SearchDisplay.__proto__ || (0, _getPrototypeOf2.default)(SearchDisplay)).call(this, props));
 		}
 
 		(0, _createClass3.default)(SearchDisplay, [{
 			key: 'saveBookToWishlist',
 			value: function saveBookToWishlist(bookToSave) {
-				var firebaseRef = firebase.database().ref();
+				console.log(bookToSave);
 				var savedBook = {
 					title: bookToSave.bookTitle,
 					author: bookToSave.author,
 					description: bookToSave.bookDescription,
 					link: bookToSave.link
 				};
-				var wishRef = firebaseRef.child('wishlist');
-				wishRef.push(savedBook);
+				firebase.database().ref().child('wishlist').push(savedBook);
 			}
 		}, {
 			key: 'render',
@@ -29989,7 +29984,7 @@
 										{ style: bottomNonThumbCell },
 										_react2.default.createElement(
 											'span',
-											{ onClick: this.saveBookToWishlist(book) },
+											{ onClick: this.saveBookToWishlist.bind(this, book) },
 											'Add to Read List'
 										)
 									)
