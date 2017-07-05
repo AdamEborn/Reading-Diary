@@ -22,34 +22,27 @@ class SearchDisplay extends React.Component {
 	}
 
 	render() {
-
 		var tableStyle = {
 			border: '1px solid black',
 			borderCollapse: 'collapse',
-			width: '100%'
-		}
+			width: '100%'}
 		var rowStyle = {
-			border: '1px solid black'
-		}
+			border: '1px solid black'}
 		var nonThumbCell = {
 			borderRight: '1px solid black',
 			height: '20px',
-			paddingLeft: '5px'
-		}
+			paddingLeft: '5px'}
 		var style = {
 			border: '1px solid black',
 			display: 'inline-block',
 			height: '80%',
-			width: '83%'
-		}
+			width: '83%'}
 		var thumbCell = {
 			borderRight: '1px solid black',
-			width: '120px'
-		}
+			width: '120px'}
 		var bottomNonThumbCell = {
 			borderRight: '1px solid black',
-			paddingLeft: '5px',
-		}
+			paddingLeft: '5px',}
 
 		var displayData = this.props.content.map(function(book, index) {
 			return (
@@ -85,9 +78,7 @@ class SearchDisplay extends React.Component {
 			<div>
 				{displayData}
 			</div>)
-};
-
-
-	}
+	};
+}
 
 export default SearchDisplay;

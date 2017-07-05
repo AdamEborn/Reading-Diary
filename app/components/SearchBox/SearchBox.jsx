@@ -3,7 +3,7 @@ import React from 'react';
 import SearchForm from 'SearchForm';
 import SearchDisplay from 'SearchDisplay';
 import googleRequests from 'googleRequests';
-import * as firebase from 'firebase';
+
 class SearchBox extends React.Component {
 	constructor() {
 		super();

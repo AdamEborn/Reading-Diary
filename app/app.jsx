@@ -19,6 +19,3 @@ ReactDOM.render(
 ,
   document.getElementById('app')
 );
-
-//to del
-//require('./redux-example.jsx');
