@@ -32154,12 +32154,12 @@
 				return firebase.database().ref().child('wishlist').once('value').then(function (snapshot) {
 					var content = snapshot.val();
 					console.log(content);
+					return content;
 				});
 			}
 		}, {
 			key: 'render',
 			value: function render() {
-
 				return _react2.default.createElement(
 					'div',
 					null,

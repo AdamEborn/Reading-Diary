@@ -15,6 +15,7 @@ class Wishlist extends React.Component{
 	    return firebase.database().ref().child('wishlist').once('value').then(function (snapshot) {
 	    	var content = snapshot.val()
 	    	console.log(content)
+	    	return content;
 	    });
 	    	
 
@@ -22,17 +23,12 @@ class Wishlist extends React.Component{
 	}
 
 	render() {
-
 		return (
 			<div>
 			<span>wishlist will go here</span>
-
 			</div>
 			)
 	}
-
-
-
 }
 
 export default Wishlist;
