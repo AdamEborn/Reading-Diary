@@ -32110,6 +32110,14 @@
 		value: true
 	});
 
+	var _typeof2 = __webpack_require__(255);
+
+	var _typeof3 = _interopRequireDefault(_typeof2);
+
+	var _keys = __webpack_require__(361);
+
+	var _keys2 = _interopRequireDefault(_keys);
+
 	var _getPrototypeOf = __webpack_require__(223);
 
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -32145,16 +32153,34 @@
 
 		function Wishlist(props) {
 			(0, _classCallCheck3.default)(this, Wishlist);
-			return (0, _possibleConstructorReturn3.default)(this, (Wishlist.__proto__ || (0, _getPrototypeOf2.default)(Wishlist)).call(this, props));
+
+			var _this = (0, _possibleConstructorReturn3.default)(this, (Wishlist.__proto__ || (0, _getPrototypeOf2.default)(Wishlist)).call(this, props));
+
+			_this.state = {
+				dataForRender: ["sdrfhswryh"]
+			};
+			return _this;
 		}
 
 		(0, _createClass3.default)(Wishlist, [{
-			key: 'componentDidMount',
-			value: function componentDidMount() {
+			key: 'componentWillMount',
+			value: function componentWillMount() {
 				return firebase.database().ref().child('wishlist').once('value').then(function (snapshot) {
 					var content = snapshot.val();
-					console.log(content);
-					return content;
+					var arr = [];
+					(0, _keys2.default)(content).forEach(function (key) {
+						if (content[key] && (0, _typeof3.default)(content[key]) === "object") {
+							var book = {
+								title: content[key].title,
+								author: content[key].author,
+								description: content[key].decription,
+								link: content[key].link
+							};
+						}
+						arr.push(book);
+					});
+					console.log(arr);
+					return arr;
 				});
 			}
 		}, {
@@ -32163,11 +32189,7 @@
 				return _react2.default.createElement(
 					'div',
 					null,
-					_react2.default.createElement(
-						'span',
-						null,
-						'wishlist will go here'
-					)
+					this.state.dataForRender
 				);
 			}
 		}]);
@@ -32175,6 +32197,33 @@
 	}(_react2.default.Component);
 
 	exports.default = Wishlist;
+
+/***/ }),
+/* 361 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(362), __esModule: true };
+
+/***/ }),
+/* 362 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	__webpack_require__(363);
+	module.exports = __webpack_require__(236).Object.keys;
+
+/***/ }),
+/* 363 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// 19.1.2.14 Object.keys(O)
+	var toObject = __webpack_require__(226)
+	  , $keys    = __webpack_require__(268);
+
+	__webpack_require__(234)('keys', function(){
+	  return function keys(it){
+	    return $keys(toObject(it));
+	  };
+	});
 
 /***/ })
 /******/ ]);
