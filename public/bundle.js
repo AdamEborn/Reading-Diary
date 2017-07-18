@@ -29839,9 +29839,9 @@
 			value: function saveBookToWishlist(bookToSave) {
 				console.log(bookToSave);
 				var savedBook = {
-					title: bookToSave.bookTitle,
+					bookTitle: bookToSave.bookTitle,
 					author: bookToSave.author,
-					description: bookToSave.bookDescription,
+					bookDescription: bookToSave.bookDescription,
 					link: bookToSave.link
 				};
 				firebase.database().ref().child('wishlist').push(savedBook);
@@ -32142,6 +32142,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _SearchDisplay = __webpack_require__(330);
+
+	var _SearchDisplay2 = _interopRequireDefault(_SearchDisplay);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var firebase = __webpack_require__(311);
@@ -32157,7 +32161,7 @@
 			var _this = (0, _possibleConstructorReturn3.default)(this, (Wishlist.__proto__ || (0, _getPrototypeOf2.default)(Wishlist)).call(this, props));
 
 			_this.state = {
-				dataForRender: ["sdrfhswryh"]
+				dataForRender: []
 			};
 			return _this;
 		}
@@ -32166,30 +32170,35 @@
 			key: 'componentWillMount',
 			value: function componentWillMount() {
 				return firebase.database().ref().child('wishlist').once('value').then(function (snapshot) {
-					var content = snapshot.val();
+					var data = snapshot.val();
 					var arr = [];
-					(0, _keys2.default)(content).forEach(function (key) {
-						if (content[key] && (0, _typeof3.default)(content[key]) === "object") {
+					(0, _keys2.default)(data).forEach(function (key) {
+						if (data[key] && (0, _typeof3.default)(data[key]) === "object") {
 							var book = {
-								title: content[key].title,
-								author: content[key].author,
-								description: content[key].decription,
-								link: content[key].link
+								bookTitle: data[key].bookTitle,
+								author: data[key].author,
+								bookDescription: data[key].bookDescription,
+								link: data[key].link
 							};
 						}
 						arr.push(book);
 					});
 					console.log(arr);
-					return arr;
-				});
+					this.setState({
+						dataForRender: arr
+					});
+				}.bind(this));
+
+				console.log(this.state.dataForRender);
 			}
 		}, {
 			key: 'render',
 			value: function render() {
+
 				return _react2.default.createElement(
 					'div',
 					null,
-					this.state.dataForRender
+					_react2.default.createElement(_SearchDisplay2.default, { content: this.state.dataForRender })
 				);
 			}
 		}]);

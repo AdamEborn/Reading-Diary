@@ -13,9 +13,9 @@ class SearchDisplay extends React.Component {
 	saveBookToWishlist(bookToSave) {
 		console.log(bookToSave)
 		var savedBook = {
-			title: bookToSave.bookTitle,
+			bookTitle: bookToSave.bookTitle,
 			author: bookToSave.author,
-			description: bookToSave.bookDescription,
+			bookDescription: bookToSave.bookDescription,
 			link: bookToSave.link
 		}
 		firebase.database().ref().child('wishlist').push(savedBook);
