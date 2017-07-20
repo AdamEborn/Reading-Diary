@@ -16,7 +16,8 @@ class SearchDisplay extends React.Component {
 			bookTitle: bookToSave.bookTitle,
 			author: bookToSave.author,
 			bookDescription: bookToSave.bookDescription,
-			link: bookToSave.link
+			link: bookToSave.link,
+			thumbnailPic: bookToSave.thumbnailPic
 		}
 		firebase.database().ref().child('wishlist').push(savedBook);
 	}
@@ -51,7 +52,7 @@ class SearchDisplay extends React.Component {
 				<table style={tableStyle}>
 				<tbody>
 					<tr style={rowStyle}>
-						<td rowSpan="4" style={thumbCell}>{book.thumbnailPic}</td>
+						<td rowSpan="4" style={thumbCell}><img src={book.thumbnailPic}/></td>
 						<td style={nonThumbCell}><strong>Title:</strong></td>
 						<td colSpan="2" style={nonThumbCell}>{book.bookTitle}</td>
 					</tr>
@@ -65,8 +66,8 @@ class SearchDisplay extends React.Component {
 					</tr>
 					<tr style={rowStyle}>
 						<td style={bottomNonThumbCell}><a href={book.link}>Read More...</a></td>
-						<td style={bottomNonThumbCell}><span>Add to Wishlist</span></td>
-						<td style={bottomNonThumbCell}><span onClick={this.saveBookToWishlist.bind(this, book)}>Add to Read List</span></td>
+						<td style={bottomNonThumbCell}><span onClick={this.saveBookToWishlist.bind(this, book)}>Add to Wishlist</span></td>
+						<td style={bottomNonThumbCell}><span>Add to Read List</span></td>
 					</tr>
 					</tbody>
 				</table>

@@ -15,33 +15,34 @@ class Wishlist extends React.Component{
 
 componentWillMount() {
 	return firebase.database().ref().child('wishlist').once('value').then(function (snapshot) {
-var data = snapshot.val();
-var arr = []
-Object.keys(data).forEach(key => {
-	if (data[key] && typeof data[key] === "object") {
-		var book = {
-			bookTitle: data[key].bookTitle,
-			author: data[key].author,
-			bookDescription: data[key].bookDescription,
-			link: data[key].link
+		var data = snapshot.val();
+		if (data === null) {
+			return
 		}
-	}
-	arr.push(book)
-})
-console.log(arr)
-this.setState({
-	dataForRender: arr
-})
-}.bind(this));
-
-console.log(this.state.dataForRender)
+		var arr = []
+		Object.keys(data).forEach(key => {
+			if (data[key] && typeof data[key] === "object") {
+				var book = {
+					bookTitle: data[key].bookTitle,
+					author: data[key].author,
+					bookDescription: data[key].bookDescription,
+					link: data[key].link,
+					thumbnailPic: data[key].thumbnailPic
+				}
+			}
+			arr.push(book)
+		})
+		console.log(arr)
+		this.setState({
+			dataForRender: arr
+		})
+	}.bind(this));
 }
 
 	render() {
 
 		return (
 			<div>
-
 			<SearchDisplay content={this.state.dataForRender}/>
 			</div>
 			)

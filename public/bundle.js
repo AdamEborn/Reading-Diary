@@ -28722,6 +28722,7 @@
 				var _this2 = this;
 
 				_googleRequests2.default.search(searchTerm).then(function (response) {
+					console.log(response);
 					_this2.extrapolateResults(response.items);
 				}), function (error) {
 					console.log(error);
@@ -28744,7 +28745,7 @@
 					this.bookDescription = this.bookDescriptionAssigner();
 					this.thumbnail = function () {
 						if (objInArr.volumeInfo.hasOwnProperty('imageLinks')) {
-							return _react2.default.createElement('img', { src: objInArr.volumeInfo.imageLinks.smallThumbnail });
+							return objInArr.volumeInfo.imageLinks.smallThumbnail;
 						} else {
 							return "No Thumbnail Available";
 						}
@@ -28761,7 +28762,7 @@
 				this.setState({
 					searchResults: finalRes
 				});
-				console.log(finalRes, this.state.searchResults);
+				console.log(this.state.searchResults);
 			}
 		}, {
 			key: 'render',
@@ -28770,7 +28771,7 @@
 
 				function renderResults() {
 					if (res.length !== 0) {
-						return _react2.default.createElement(_SearchDisplay2.default, { content: res });
+						return _react2.default.createElement(_SearchDisplay2.default, { content: res, wishlistMode: 'Add to ' });
 					} else {
 						return;
 					}
@@ -29842,7 +29843,8 @@
 					bookTitle: bookToSave.bookTitle,
 					author: bookToSave.author,
 					bookDescription: bookToSave.bookDescription,
-					link: bookToSave.link
+					link: bookToSave.link,
+					thumbnailPic: bookToSave.thumbnailPic
 				};
 				firebase.database().ref().child('wishlist').push(savedBook);
 			}
@@ -29888,7 +29890,7 @@
 									_react2.default.createElement(
 										'td',
 										{ rowSpan: '4', style: thumbCell },
-										book.thumbnailPic
+										_react2.default.createElement('img', { src: book.thumbnailPic })
 									),
 									_react2.default.createElement(
 										'td',
@@ -29959,7 +29961,7 @@
 										{ style: bottomNonThumbCell },
 										_react2.default.createElement(
 											'span',
-											null,
+											{ onClick: this.saveBookToWishlist.bind(this, book) },
 											'Add to Wishlist'
 										)
 									),
@@ -29968,7 +29970,7 @@
 										{ style: bottomNonThumbCell },
 										_react2.default.createElement(
 											'span',
-											{ onClick: this.saveBookToWishlist.bind(this, book) },
+											null,
 											'Add to Read List'
 										)
 									)
@@ -32171,6 +32173,9 @@
 			value: function componentWillMount() {
 				return firebase.database().ref().child('wishlist').once('value').then(function (snapshot) {
 					var data = snapshot.val();
+					if (data === null) {
+						return;
+					}
 					var arr = [];
 					(0, _keys2.default)(data).forEach(function (key) {
 						if (data[key] && (0, _typeof3.default)(data[key]) === "object") {
@@ -32178,7 +32183,8 @@
 								bookTitle: data[key].bookTitle,
 								author: data[key].author,
 								bookDescription: data[key].bookDescription,
-								link: data[key].link
+								link: data[key].link,
+								thumbnailPic: data[key].thumbnailPic
 							};
 						}
 						arr.push(book);
@@ -32188,8 +32194,6 @@
 						dataForRender: arr
 					});
 				}.bind(this));
-
-				console.log(this.state.dataForRender);
 			}
 		}, {
 			key: 'render',
