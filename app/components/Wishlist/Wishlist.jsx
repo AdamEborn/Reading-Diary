@@ -43,7 +43,7 @@ componentWillMount() {
 
 		return (
 			<div>
-			<SearchDisplay content={this.state.dataForRender}/>
+			<SearchDisplay content={this.state.dataForRender} mode="wish"/>
 			</div>
 			)
 	}

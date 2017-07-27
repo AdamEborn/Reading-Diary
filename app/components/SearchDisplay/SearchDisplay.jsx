@@ -11,7 +11,8 @@ class SearchDisplay extends React.Component {
 	}
 
 	saveBookToWishlist(bookToSave) {
-		console.log(bookToSave)
+		var len = firebase.database().ref().child('wishlist').length;
+		console.log(bookToSave, len)
 		var savedBook = {
 			bookTitle: bookToSave.bookTitle,
 			author: bookToSave.author,
@@ -20,6 +21,11 @@ class SearchDisplay extends React.Component {
 			thumbnailPic: bookToSave.thumbnailPic
 		}
 		firebase.database().ref().child('wishlist').push(savedBook);
+	}
+
+	removeBookFromWishlist(bookToRemove) {
+		console.log(bookToRemove)
+		return
 	}
 
 	render() {
@@ -45,36 +51,75 @@ class SearchDisplay extends React.Component {
 			borderRight: '1px solid black',
 			paddingLeft: '5px',}
 
-		var displayData = this.props.content.map(function(book, index) {
-			return (
-				<div key={index}>
-				<br/>
-				<table style={tableStyle}>
-				<tbody>
-					<tr style={rowStyle}>
-						<td rowSpan="4" style={thumbCell}><img src={book.thumbnailPic}/></td>
-						<td style={nonThumbCell}><strong>Title:</strong></td>
-						<td colSpan="2" style={nonThumbCell}>{book.bookTitle}</td>
-					</tr>
-					<tr style={rowStyle}>
-						<td style={nonThumbCell}><strong>Author:</strong></td>
-						<td colSpan="2" style={nonThumbCell}>{book.author}</td>
-					</tr>
-					<tr style={rowStyle}>
-						<td style={nonThumbCell}> <strong>Description:</strong></td>
-						<td colSpan="2" style={nonThumbCell}>{book.bookDescription}</td>
-					</tr>
-					<tr style={rowStyle}>
-						<td style={bottomNonThumbCell}><a href={book.link}>Read More...</a></td>
-						<td style={bottomNonThumbCell}><span onClick={this.saveBookToWishlist.bind(this, book)}>Add to Wishlist</span></td>
-						<td style={bottomNonThumbCell}><span>Add to Read List</span></td>
-					</tr>
-					</tbody>
-				</table>
-				<br/>
-			</div>
-				)
-		}, this)
+			switch (this.props.mode) {
+				case 'searchRes':
+					var displayData = this.props.content.map(function(book, index) {
+						return (
+							<div key={index}>
+							<br/>
+							<table style={tableStyle}>
+							<tbody>
+								<tr style={rowStyle}>
+									<td rowSpan="4" style={thumbCell}><img src={book.thumbnailPic}/></td>
+									<td style={nonThumbCell}><strong>Title:</strong></td>
+									<td colSpan="2" style={nonThumbCell}>{book.bookTitle}</td>
+								</tr>
+								<tr style={rowStyle}>
+									<td style={nonThumbCell}><strong>Author:</strong></td>
+									<td colSpan="2" style={nonThumbCell}>{book.author}</td>
+								</tr>
+								<tr style={rowStyle}>
+									<td style={nonThumbCell}> <strong>Description:</strong></td>
+									<td colSpan="2" style={nonThumbCell}>{book.bookDescription}</td>
+								</tr>
+								<tr style={rowStyle}>
+									<td style={bottomNonThumbCell}><a href={book.link}>Read More...</a></td>
+									<td style={bottomNonThumbCell}><span onClick={this.saveBookToWishlist.bind(this, book)}>Add to Wishlist</span></td>
+									<td style={bottomNonThumbCell}><span>Add to Read List</span></td>
+								</tr>
+								</tbody>
+							</table>
+							<br/>
+						</div>
+							)
+					}, this)
+					break;
+					case 'wish':
+						var displayData = this.props.content.map(function(book, index) {
+						return (
+							<div key={index}>
+							<br/>
+							<table style={tableStyle}>
+							<tbody>
+								<tr style={rowStyle}>
+									<td rowSpan="4" style={thumbCell}><img src={book.thumbnailPic}/></td>
+									<td style={nonThumbCell}><strong>Title:</strong></td>
+									<td colSpan="2" style={nonThumbCell}>{book.bookTitle}</td>
+								</tr>
+								<tr style={rowStyle}>
+									<td style={nonThumbCell}><strong>Author:</strong></td>
+									<td colSpan="2" style={nonThumbCell}>{book.author}</td>
+								</tr>
+								<tr style={rowStyle}>
+									<td style={nonThumbCell}> <strong>Description:</strong></td>
+									<td colSpan="2" style={nonThumbCell}>{book.bookDescription}</td>
+								</tr>
+								<tr style={rowStyle}>
+									<td style={bottomNonThumbCell}><a href={book.link}>Read More...</a></td>
+									<td style={bottomNonThumbCell}><span onClick={this.removeBookFromWishlist.bind(this, book)}>Remove From Wishlist</span></td>
+									<td style={bottomNonThumbCell}><span>Add to Read List</span></td>
+								</tr>
+								</tbody>
+							</table>
+							<br/>
+						</div>
+							)
+					}, this)
+				default:
+
+			}
+
+
 			return (
 			<div>
 				{displayData}
