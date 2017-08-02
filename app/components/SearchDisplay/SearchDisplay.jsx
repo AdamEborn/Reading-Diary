@@ -1,4 +1,5 @@
 import React from 'react';
+const uuid = require('uuid');
 var firebase = require('firebase/app');
 require('firebase/auth');
 require('firebase/database');
@@ -12,8 +13,9 @@ class SearchDisplay extends React.Component {
 
 	saveBookToWishlist(bookToSave) {
 		var len = firebase.database().ref().child('wishlist').length;
-		console.log(bookToSave, len)
+		//console.log(bookToSave, len)
 		var savedBook = {
+			id: uuid(),
 			bookTitle: bookToSave.bookTitle,
 			author: bookToSave.author,
 			bookDescription: bookToSave.bookDescription,
@@ -21,12 +23,19 @@ class SearchDisplay extends React.Component {
 			thumbnailPic: bookToSave.thumbnailPic
 		}
 		firebase.database().ref().child('wishlist').push(savedBook);
+		console.log(savedBook)
 	}
 
 	removeBookFromWishlist(bookToRemove) {
-		console.log(bookToRemove)
-		return
-	}
+		// .key 
+		return firebase.database().ref().child('wishlist').once('value').then(function (snapshot) {
+		var data = snapshot;
+		console.log(data)
+		if (data === null) {
+			return
+		}
+	})
+}
 
 	render() {
 		var tableStyle = {
@@ -106,7 +115,7 @@ class SearchDisplay extends React.Component {
 								</tr>
 								<tr style={rowStyle}>
 									<td style={bottomNonThumbCell}><a href={book.link}>Read More...</a></td>
-									<td style={bottomNonThumbCell}><span onClick={this.removeBookFromWishlist.bind(this, book)}>Remove From Wishlist</span></td>
+									<td style={bottomNonThumbCell}><span onClick={this.removeBookFromWishlist.bind(this, book.id)}>Remove From Wishlist</span></td>
 									<td style={bottomNonThumbCell}><span>Add to Read List</span></td>
 								</tr>
 								</tbody>
