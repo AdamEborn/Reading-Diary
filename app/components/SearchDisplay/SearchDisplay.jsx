@@ -1,5 +1,4 @@
 import React from 'react';
-const uuid = require('uuid');
 var firebase = require('firebase/app');
 require('firebase/auth');
 require('firebase/database');
@@ -12,32 +11,37 @@ class SearchDisplay extends React.Component {
 	}
 
 	saveBookToWishlist(bookToSave) {
-		var len = firebase.database().ref().child('wishlist').length;
-		//console.log(bookToSave, len)
+		var reference = firebase.database().ref().child('wishlist');
 		var savedBook = {
-			id: uuid(),
+			id: 'tempstring',
 			bookTitle: bookToSave.bookTitle,
 			author: bookToSave.author,
 			bookDescription: bookToSave.bookDescription,
 			link: bookToSave.link,
 			thumbnailPic: bookToSave.thumbnailPic
 		}
-		firebase.database().ref().child('wishlist').push(savedBook);
-		console.log(savedBook)
+		var newPushRef = reference.push(savedBook);
+		reference.child(newPushRef.key).update({
+			id: newPushRef.key
+		})
 	}
 
 	removeBookFromWishlist(bookToRemove) {
-		// .key 
-		return firebase.database().ref().child('wishlist').once('value').then(function (snapshot) {
-		var data = snapshot;
-		console.log(data)
-		if (data === null) {
-			return
-		}
-	})
+		var ref = firebase.database().ref().child('wishlist');
+		ref.on("value", function(snapshot) {
+			var sv = snapshot.val();
+			for (var key in sv) {
+				if (!sv.hasOwnProperty(key)) continue;
+				var obj = sv[key];
+					if (obj.hasOwnProperty("id") && obj.id === bookToRemove.id) {
+						ref.child(obj.id).remove();
+					}
+			}
+		})
 }
 
 	render() {
+
 		var tableStyle = {
 			border: '1px solid black',
 			borderCollapse: 'collapse',
@@ -93,6 +97,7 @@ class SearchDisplay extends React.Component {
 							)
 					}, this)
 					break;
+
 					case 'wish':
 						var displayData = this.props.content.map(function(book, index) {
 						return (
@@ -115,7 +120,7 @@ class SearchDisplay extends React.Component {
 								</tr>
 								<tr style={rowStyle}>
 									<td style={bottomNonThumbCell}><a href={book.link}>Read More...</a></td>
-									<td style={bottomNonThumbCell}><span onClick={this.removeBookFromWishlist.bind(this, book.id)}>Remove From Wishlist</span></td>
+									<td style={bottomNonThumbCell}><span onClick={this.removeBookFromWishlist.bind(this, book)}>Remove From Wishlist</span></td>
 									<td style={bottomNonThumbCell}><span>Add to Read List</span></td>
 								</tr>
 								</tbody>
@@ -125,9 +130,7 @@ class SearchDisplay extends React.Component {
 							)
 					}, this)
 				default:
-
 			}
-
 
 			return (
 			<div>
