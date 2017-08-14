@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, IndexLink} from 'react-router';
-import * as firebase from 'firebase';
+
  class NavBar extends React.Component {
 	constructor(props) {
 		super(props);
@@ -11,13 +11,12 @@ import * as firebase from 'firebase';
 		var divStyle = {
 			backgroundColor:'#2E8B57',
 			height: '15%',
-      		marginBottom: '0.5%',
+      marginBottom: '0.5%',
 			width: '100%'
 		}
 		var linkStyle = {
 			textDecoration: 'none',
 			color: 'white',
-
 		}
 		var list = {
 			listStyleType: 'none'

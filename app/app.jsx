@@ -5,9 +5,9 @@ import {Route, Router, IndexRoute, hashHistory} from 'react-router';
 import Main from 'Main';
 import SearchBox from 'SearchBox';
 import Wishlist from 'Wishlist';
-var firebase = require('firebase/app');
 import './../firebase/index';
 
+require('./redux-example.jsx');;
 
 ReactDOM.render(
 	<Router history={hashHistory}>
@@ -19,3 +19,16 @@ ReactDOM.render(
 ,
   document.getElementById('app')
 );
+
+//todo
+//user account -
+//(if this.state.user === "") {
+//only show user select component in nav bar
+//}
+//else {show everything else}
+
+
+//will need account settings page
+//if (this.state.user !== "") {
+//show setiings
+//}
