@@ -1,7 +1,8 @@
 var redux = require('redux')
 var thunk = require('redux-thunk').default;
 
-import {bookDisplayReducer} from 'app/components/SearchDisplay/reducer';
+//reducers go here
+import {bookDisplayReducer} from 'app/reducers/index';
 
 export var configure = () => {
   var reducer = redux.combineReducers({

@@ -13,7 +13,8 @@ module.exports = {
       SearchBox: 'app/Components/SearchBox/SearchBox.jsx',
       Main: 'app/Components/Main/Main.jsx',
       NavBar: 'app/Components/NavBar/NavBar.jsx',
-      Wishlist: 'app/Components/Wishlist/Wishlist.jsx'
+      Wishlist: 'app/Components/Wishlist/Wishlist.jsx',
+      configureStore: 'app/store/configureStore.jsx'
     },
     extensions: ['', '.js', '.jsx']
   },

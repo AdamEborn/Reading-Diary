@@ -7,6 +7,8 @@ import SearchBox from 'SearchBox';
 import Wishlist from 'Wishlist';
 import './../firebase/index';
 
+
+
 require('./redux-example.jsx');;
 
 ReactDOM.render(

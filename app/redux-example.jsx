@@ -1,6 +1,6 @@
 var redux = require('redux');
 var axios = require('axios');
-var bookActions = require('app/components/SearchDisplay/actions');
+var actions = require('app/actions/index');
 var store = require('./store/configureStore').configure();
 console.log('Starting redux example');
 
