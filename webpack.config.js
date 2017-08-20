@@ -14,7 +14,10 @@ module.exports = {
       Main: 'app/Components/Main/Main.jsx',
       NavBar: 'app/Components/NavBar/NavBar.jsx',
       Wishlist: 'app/Components/Wishlist/Wishlist.jsx',
-      configureStore: 'app/store/configureStore.jsx'
+      ReadingDiaryApp: 'app/Components/ReadingDiaryApp/ReadingDiaryApp.jsx',
+      configureStore: 'app/store/configureStore.jsx',
+      actions: 'app/actions/actions.jsx',
+      reducers: 'app/reducers/reducers.jsx'
     },
     extensions: ['', '.js', '.jsx']
   },

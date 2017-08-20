@@ -5,9 +5,13 @@ module.exports = function (config) {
     browsers: ['Chrome'],
     singleRun: true,
     frameworks: ['mocha'],
-    files: ['app/components/**/*.test.jsx'],
+    files: ['app/components/**/*.test.jsx',
+    'app/actions/**/*.test.jsx',
+    'app/reducers/**/*.test.jsx'],
     preprocessors: {
-      'app/components/**/*.test.jsx': ['webpack', 'sourcemap']
+      'app/components/**/*.test.jsx': ['webpack', 'sourcemap'],
+      'app/actions/**/*.test.jsx': ['webpack', 'sourcemap'],
+      'app/reducers/**/*.test.jsx': ['webpack', 'sourcemap']
     },
     reporters: ['mocha'],
     client: {

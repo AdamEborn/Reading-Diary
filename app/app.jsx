@@ -1,24 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Route, Router, IndexRoute, hashHistory} from 'react-router';
 
-import Main from 'Main';
-import SearchBox from 'SearchBox';
-import Wishlist from 'Wishlist';
+import ReadingDiaryApp from 'ReadingDiaryApp';
+
 import './../firebase/index';
 
+//redux bits
+var actions = require('actions');
+var store = require('configureStore').configure();
+store.subscribe(() => {
+	console.log('New state', store.getState());
+});
 
+var bookA = {
+  name: 'a dance with dragons',
+  author: 'george r. r. martin',
+  category: 'fantasy'
+}
+var bookB = {
+  name: 'the chalk pit',
+  author: 'elly griffiths',
+  category: 'crime'
+}
+var bookC = {
+  name: 'a touch of frost',
+  author: 'r.d wingfield',
+  category: 'crime'
+}
+var bookD = {
+  name: 'the remorseful day',
+  author: 'colin dexter',
+  category: 'crime'
+}
 
-require('./redux-example.jsx');;
+store.dispatch(actions.addBook(bookA))
+store.dispatch(actions.addBook(bookB))
+store.dispatch(actions.addBook(bookC))
+store.dispatch(actions.addBook(bookD))
+store.dispatch(actions.removeBook(bookA))
+
 
 ReactDOM.render(
-	<Router history={hashHistory}>
-		<Route path="/" component={Main}>
-			<Route path="search" component={SearchBox}/>
-			<Route path="wishlist" component={Wishlist}/>
-		</Route>
-	</Router>
-,
+	<ReadingDiaryApp/>,
   document.getElementById('app')
 );
 

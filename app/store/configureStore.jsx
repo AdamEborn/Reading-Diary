@@ -2,11 +2,13 @@ var redux = require('redux')
 var thunk = require('redux-thunk').default;
 
 //reducers go here
-import {bookDisplayReducer} from 'app/reducers/index';
+import {bookDisplayReducer, userReducer, mapReducer, searchTextReducer} from 'app/reducers/reducers';
 
 export var configure = () => {
   var reducer = redux.combineReducers({
     bookDisplay: bookDisplayReducer,
+    user: userReducer,
+    map: mapReducer
   });
 
   //store
