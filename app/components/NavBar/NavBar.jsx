@@ -7,21 +7,23 @@ import {Link, IndexLink} from 'react-router';
 	}
 
 	render() {
+    
 		var {className} = this.props;
 		var divStyle = {
-			backgroundColor:'#2E8B57',
-			height: '15%',
+      backgroundColor:'#2E8B57',
+      height: '15%',
       marginBottom: '0.5%',
-			width: '100%'
+      width: '100%'
 		}
 		var linkStyle = {
-			textDecoration: 'none',
-			color: 'white',
+      textDecoration: 'none',
+      color: 'white'
 		}
 		var list = {
-			listStyleType: 'none'
+      listStyleType: 'none'
 		}
-		return(
+
+		return (
 			<div style={divStyle} className={className}>
 				<ul style={list}>
 					<li><IndexLink to="/" style={linkStyle}>Main Page</IndexLink></li>
@@ -32,4 +34,5 @@ import {Link, IndexLink} from 'react-router';
 			);
 	}
 };
+
 export default NavBar;

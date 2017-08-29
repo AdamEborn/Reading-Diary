@@ -18,7 +18,7 @@ class ReadingDiaryApp extends React.Component{
         </Route>
       </Router>
     )
-  }
-}
+  };
+};
 
 export default ReadingDiaryApp;

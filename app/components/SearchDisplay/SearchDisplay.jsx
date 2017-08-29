@@ -8,7 +8,7 @@ import SearchForm from 'SearchForm';
 class SearchDisplay extends React.Component {
 	constructor(props) {
 		super(props);
-	}
+	};
 
 	saveBookToWishlist(bookToSave) {
 		var reference = firebase.database().ref().child('wishlist');
@@ -23,8 +23,8 @@ class SearchDisplay extends React.Component {
 		var newPushRef = reference.push(savedBook);
 		reference.child(newPushRef.key).update({
 			id: newPushRef.key
-		})
-	}
+		});
+	};
 
 	removeBookFromWishlist(bookToRemove) {
 		var ref = firebase.database().ref().child('wishlist');
@@ -33,12 +33,12 @@ class SearchDisplay extends React.Component {
 			for (var key in sv) {
 				if (!sv.hasOwnProperty(key)) continue;
 				var obj = sv[key];
-					if (obj.hasOwnProperty("id") && obj.id === bookToRemove.id) {
-						ref.child(obj.id).remove();
-					}
-			}
-		})
-}
+				if (obj.hasOwnProperty("id") && obj.id === bookToRemove.id) {
+					ref.child(obj.id).remove();
+				};
+			};
+		});
+	};
 
 	render() {
 
