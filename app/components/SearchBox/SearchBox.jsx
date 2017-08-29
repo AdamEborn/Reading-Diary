@@ -64,7 +64,7 @@ class SearchBox extends React.Component {
 		function renderResults() {
 			if (res.length !== 0) {
 				return (<SearchDisplay content={res} mode="searchRes" />)
-			};
+			}
 			else {
 				return;
 			};
