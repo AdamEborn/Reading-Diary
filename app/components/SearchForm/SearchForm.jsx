@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as firebase from 'firebase';
+
+
 class SearchForm extends React.Component {
 	constructor(props) {
 		super(props);

@@ -45,13 +45,13 @@ class SearchDisplay extends React.Component {
 		var tableStyle = {
 			border: '1px solid black',
 			borderCollapse: 'collapse',
-			width: '100%'}
+			width: '50%'}
 		var rowStyle = {
 			border: '1px solid black'}
 		var nonThumbCell = {
 			borderRight: '1px solid black',
-			height: '20px',
-			paddingLeft: '5px'}
+			height: '10px',
+			paddingLeft: '3px'}
 		var style = {
 			border: '1px solid black',
 			display: 'inline-block',

@@ -22,7 +22,6 @@ componentWillMount() {
 		var arr = []
 		Object.keys(data).forEach(key => {
 			if (data[key] && typeof data[key] === "object") {
-
 				var book = {
 					id: data[key].id,
 					bookTitle: data[key].bookTitle,

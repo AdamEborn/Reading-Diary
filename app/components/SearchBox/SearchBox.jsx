@@ -9,9 +9,9 @@ class SearchBox extends React.Component {
 		super();
 		this.state = {
 			searchResults: []
-		}
+		};
+};
 
-}
 	handleSearch(searchTerm) {
 		googleRequests.search(searchTerm).then((response) => {
 			console.log(response)
@@ -19,7 +19,7 @@ class SearchBox extends React.Component {
 		}), ((error) =>{
 			console.log(error)
 		});
-	}
+	};
 
 	extrapolateResults(arr) {
 		function Book(objInArr) {
@@ -42,22 +42,21 @@ class SearchBox extends React.Component {
 			else {
 				return "No Thumbnail Available";
 			}
-		};
-			this.thumbnailPic = this.thumbnail();
-	}
+		}
+		this.thumbnailPic = this.thumbnail();
+	};
 
 	var finalRes = [];
 	var initRes = arr;
 		initRes.forEach(function (objInArr) {
 			var obj = new Book(objInArr);
 			finalRes.push(obj);
-		})
+		});
 	this.setState({
 		searchResults: finalRes
-	})
+	});
 	console.log(this.state.searchResults)
-	}
-
+};
 
 	render() {
 		var res = this.state.searchResults;

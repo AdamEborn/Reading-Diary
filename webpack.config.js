@@ -1,5 +1,20 @@
+var webpack = require('webpack');
+
 module.exports = {
-  entry: './app/app.jsx',
+  entry: [
+    'script!jquery/dist/jquery.min.js',
+    'script!foundation-sites/dist/foundation.min.js',
+    './app/app.jsx'
+  ],
+  externals: {
+    jquery: 'jQuery'
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      '$': 'jquery',
+      'jQuery': 'jquery'
+    })
+  ],
   output: {
     path: __dirname,
     filename: './public/bundle.js'
@@ -14,10 +29,7 @@ module.exports = {
       Main: 'app/Components/Main/Main.jsx',
       NavBar: 'app/Components/NavBar/NavBar.jsx',
       Wishlist: 'app/Components/Wishlist/Wishlist.jsx',
-      ReadingDiaryApp: 'app/Components/ReadingDiaryApp/ReadingDiaryApp.jsx',
-      configureStore: 'app/store/configureStore.jsx',
-      actions: 'app/actions/actions.jsx',
-      reducers: 'app/reducers/reducers.jsx'
+      ReadingDiaryApp: 'app/Components/ReadingDiaryApp/ReadingDiaryApp.jsx'
     },
     extensions: ['', '.js', '.jsx']
   },
