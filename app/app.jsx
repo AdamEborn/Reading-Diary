@@ -7,9 +7,8 @@ import './../firebase/index';
 
 //load foundation
 require('style!css!foundation-sites/dist/foundation.min.css');
-$(document).ready(function($) {
-	$(document).foundation();
-});
+
+$(document).foundation();
 
 ReactDOM.render(
 		<ReadingDiaryApp />,

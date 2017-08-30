@@ -70,15 +70,12 @@ class SearchBox extends React.Component {
 			};
 		};
 
-		var style = {
-			border: '1px solid black',
-			height: '80%',
-			width: '83%'
-		}
 
 		return (
-			<div style={style}>
+			<div>
 				<SearchForm onSearch={this.handleSearch.bind(this)}></SearchForm>
+				<br/>
+				<br/><br/><br/>
 				{renderResults()}
 			</div>)
 	}

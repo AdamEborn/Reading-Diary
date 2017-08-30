@@ -8,7 +8,29 @@ import SearchForm from 'SearchForm';
 class SearchDisplay extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			wishlistUrls: []
+		}
 	};
+
+	componentWillMount() {
+	return firebase.database().ref().child('wishlist').once('value').then(function (snapshot) {
+		var data = snapshot.val();
+		if (data === null) {
+			return
+		}
+		var arr = []
+		Object.keys(data).forEach(key => {
+			if (data[key] && typeof data[key] === "object") {
+				arr.push(data[key].link)
+			}
+		})
+		console.log(arr)
+		this.setState({
+			wishlistUrls: arr
+		})
+	}.bind(this));
+}
 
 	saveBookToWishlist(bookToSave) {
 		var reference = firebase.database().ref().child('wishlist');
@@ -86,7 +108,7 @@ class SearchDisplay extends React.Component {
 									<td colSpan="2" style={nonThumbCell}>{book.bookDescription}</td>
 								</tr>
 								<tr style={rowStyle}>
-									<td style={bottomNonThumbCell}><a href={book.link}>Read More...</a></td>
+									<td style={bottomNonThumbCell}><a href={book.link} target="_blank">Read More...</a></td>
 									<td style={bottomNonThumbCell}><span onClick={this.saveBookToWishlist.bind(this, book)}>Add to Wishlist</span></td>
 									<td style={bottomNonThumbCell}><span>Add to Read List</span></td>
 								</tr>
@@ -119,7 +141,7 @@ class SearchDisplay extends React.Component {
 									<td colSpan="2" style={nonThumbCell}>{book.bookDescription}</td>
 								</tr>
 								<tr style={rowStyle}>
-									<td style={bottomNonThumbCell}><a href={book.link}>Read More...</a></td>
+									<td style={bottomNonThumbCell}><a href={book.link} target="_blank">Read More...</a></td>
 									<td style={bottomNonThumbCell}><span onClick={this.removeBookFromWishlist.bind(this, book)}>Remove From Wishlist</span></td>
 									<td style={bottomNonThumbCell}><span>Add to Read List</span></td>
 								</tr>
