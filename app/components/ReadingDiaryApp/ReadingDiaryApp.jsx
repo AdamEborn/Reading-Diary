@@ -9,8 +9,9 @@ class ReadingDiaryApp extends React.Component{
   constructor(props) {
     super(props);
   }
+
   render() {
-    return(
+    return (
       <Router history={hashHistory}>
         <Route path="/" component={Main}>
           <Route path="search" component={SearchBox}/>

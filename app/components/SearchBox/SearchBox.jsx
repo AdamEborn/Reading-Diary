@@ -25,6 +25,7 @@ class SearchBox extends React.Component {
 		function Book(objInArr) {
 			this.link = objInArr.volumeInfo.infoLink;
 			this.bookTitle = objInArr.volumeInfo.title;
+			this.publishedDate = objInArr.volumeInfo.publishedDate.slice(0,4),
 			this.author = objInArr.volumeInfo.authors;
 			this.bookDescriptionAssigner = function() {
 				if (objInArr.volumeInfo.hasOwnProperty('description')){

@@ -1,0 +1,16 @@
+1. style book overview
+   a. smaller image container
+   b. smaller rows
+   c. smaller text / lighter color (app-wide var for all text?)
+   d.
+
+2. take out save / remove methods from 'search display' as they could be used later on (common functions file)
+3. pagination for +10 results from search
+4. search function to expand
+   a. search by genre
+
+5. user backend
+   a. create user
+   b. auth with github / facebook / google etc.
+   c. settings (favourite genres / wishlist / readlist / details)
+   d. firebase changes

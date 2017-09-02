@@ -20,16 +20,16 @@ class SearchForm extends React.Component {
 	render() {
 		var style = {
 			border: '1px solid black',
-			float: 'left',
 			width: '30%'
 		}
 
 		return(
-			<div>
-			<div style={style} className="container">
+			<div className="row">
+			<div style={style} className="columns medium-6 large-4 small-centered">
+				<br />
 				<form onSubmit={this.onFormSubmit.bind(this)}>
-					<input type="text" placeholder="search name here" ref="searchTerm"/>
-					<input type="submit" className="button" value="Get Book"/>
+					<input type="text" placeholder="Search..." ref="searchTerm"/>
+					<input type="submit" className="expanded button" value="Search"/>
 				</form>
 			</div>
 			<br/>

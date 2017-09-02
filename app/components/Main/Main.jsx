@@ -10,6 +10,7 @@ class Main extends React.Component{
     return (
       <div>
         <NavBar></NavBar>
+        <br/>
         {this.props.children}
       </div>
     )

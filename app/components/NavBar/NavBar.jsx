@@ -7,31 +7,23 @@ import {Link, IndexLink} from 'react-router';
 	}
 
 	render() {
-    
-		var {className} = this.props;
-		var divStyle = {
-      backgroundColor:'#2E8B57',
-      height: '15%',
-      marginBottom: '0.5%',
-      width: '100%'
-		}
-		var linkStyle = {
-      textDecoration: 'none',
-      color: 'white'
-		}
-		var list = {
-      listStyleType: 'none'
-		}
 
 		return (
-			<div style={divStyle} className={className}>
-				<ul style={list}>
-					<li><IndexLink to="/" style={linkStyle}>Main Page</IndexLink></li>
-					<li> <Link to="/search" style={linkStyle}>Search</Link></li>
-					<li> <Link to="/wishlist" style={linkStyle}>Wishlist</Link></li>
-				</ul>
-			</div>
-			);
+			<div className="top-bar">
+        <div className="top-bar-left">
+          <ul className="menu">
+            <li> <IndexLink to="/">Main Page</IndexLink ></li>
+            <li> <Link to="/search">Search</Link> </li>
+            <li> <Link to="/wishlist">Wishlist</Link> </li>
+          </ul>
+        </div>
+        <div className="top-bar-right">
+          <ul className="menu">
+            <li className="menu-text">Reading Diary App</li>
+          </ul>
+        </div>
+      </div>
+		);
 	}
 };
 

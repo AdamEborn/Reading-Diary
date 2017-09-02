@@ -29,7 +29,8 @@ module.exports = {
       Main: 'app/Components/Main/Main.jsx',
       NavBar: 'app/Components/NavBar/NavBar.jsx',
       Wishlist: 'app/Components/Wishlist/Wishlist.jsx',
-      ReadingDiaryApp: 'app/Components/ReadingDiaryApp/ReadingDiaryApp.jsx'
+      ReadingDiaryApp: 'app/Components/ReadingDiaryApp/ReadingDiaryApp.jsx',
+      applicationStyles: 'app/styles/app.scss'
     },
     extensions: ['', '.js', '.jsx']
   },
