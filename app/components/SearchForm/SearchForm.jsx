@@ -13,23 +13,24 @@ class SearchForm extends React.Component {
 		var searchTerm = this.refs.searchTerm.value;
 		if (searchTerm.length > 0) {
 			this.refs.searchTerm.value = '';
-      		this.props.onSearch(searchTerm);
+      	this.props.onSearch(searchTerm);
 		}
 	}
 
 	render() {
 		var style = {
 			border: '1px solid black',
-			width: '30%'
+			//width: '30%'
+
 		}
 
 		return(
-			<div className="row">
-			<div style={style} className="columns medium-6 large-4 small-centered">
+			<div className={this.props.classNameA}>
+			<div style={style} className={this.props.classNameB}>
 				<br />
 				<form onSubmit={this.onFormSubmit.bind(this)}>
 					<input type="text" placeholder="Search..." ref="searchTerm"/>
-					<input type="submit" className="expanded button" value="Search"/>
+					<input type="submit" className={this.props.buttonClass} value="Search"/>
 				</form>
 			</div>
 			<br/>

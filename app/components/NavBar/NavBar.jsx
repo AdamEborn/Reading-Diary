@@ -1,5 +1,9 @@
 import React from 'react';
-import {Link, IndexLink} from 'react-router';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+
+// import HomePage from 'HomePage';
+// import SearchBox from 'SearchBox';
+// import Wishlist from 'Wishlist';
 
  class NavBar extends React.Component {
 	constructor(props) {
@@ -12,10 +16,11 @@ import {Link, IndexLink} from 'react-router';
 			<div className="top-bar">
         <div className="top-bar-left">
           <ul className="menu">
-            <li> <IndexLink to="/">Main Page</IndexLink ></li>
+            <li> <Link to="/">Home Page</Link></li>
             <li> <Link to="/search">Search</Link> </li>
             <li> <Link to="/wishlist">Wishlist</Link> </li>
           </ul>
+
         </div>
         <div className="top-bar-right">
           <ul className="menu">
@@ -23,6 +28,7 @@ import {Link, IndexLink} from 'react-router';
           </ul>
         </div>
       </div>
+
 		);
 	}
 };
