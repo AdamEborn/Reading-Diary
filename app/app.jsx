@@ -10,7 +10,7 @@ import './../firebase/index';
 require('style!css!foundation-sites/dist/foundation.min.css');
 $(document).foundation();
 
-require('style!css!sass!applicationStyles')
+//require('style!css!sass!applicationStyles')
 
 ReactDOM.render(
 	<HashRouter>

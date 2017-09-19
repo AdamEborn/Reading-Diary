@@ -1,18 +1,7 @@
 var redux = require('redux');
+var axios = require('axios');
 console.log("Starting redux example");
 
-//STORE & SUBSCRIBE
-var store = redux.createStore(reducer, redux.compose(
-  window.devToolsExtension ? window.devToolsExtension() : f => f
-));
-
-var unsubscribe = store.subscribe(() => {
-  var state = store.getState();
-  if (state.map.isFetching) {
-    console.log("getting location")
-  }
-  console.log("State:", state);
-});
 
 
 //REDUCERS
@@ -84,6 +73,15 @@ var reducer = redux.combineReducers({
   map: mapReducer
 });
 
+//STORE & SUBSCRIBE
+var store = redux.createStore(reducer, redux.compose(
+  window.devToolsExtension ? window.devToolsExtension() : f => f
+));
+
+var unsubscribe = store.subscribe(() => {
+  var state = store.getState();
+  console.log("State:", state);
+});
 
 
 //ACTIONS
