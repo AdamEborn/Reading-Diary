@@ -15,6 +15,12 @@ ReactDOM.render(
   document.getElementById('app')
 )
 
+require('./redux-example.jsx');
+//require('./redux-todo.jsx');
+
+
+
+
 //todo
 //user account -
 //(if this.state.user === "") {
