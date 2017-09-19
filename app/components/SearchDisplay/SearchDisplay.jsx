@@ -4,12 +4,14 @@ require('firebase/auth');
 require('firebase/database');
 
 import SearchForm from 'SearchForm';
+import dataFunc from 'firebase/databaseFunctions';
 
 class SearchDisplay extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			wishlistUrls: []
+			wishlistUrls: [],
+			data: this.props.content
 		}
 	};
 
@@ -64,8 +66,7 @@ class SearchDisplay extends React.Component {
 
 
 	render() {
-
-			switch (this.props.mode) {
+		switch (this.props.mode) {
 				case 'searchRes':
 					var displayData = this.props.content.map(function(book, index) {
 						return (
@@ -85,7 +86,7 @@ class SearchDisplay extends React.Component {
 										</tr>
 										<tr>
 											<td> <a href={book.link} target="_blank">Read More...</a></td>
-											<td> <span onClick={this.saveBookToWishlist.bind(this, book)}>Add To Wishlist</span> </td>
+											<td> <span onClick={this.saveBookToWishlist.bind(this, book)}>Add To Wishlist</span></td>
 											<td> <span>Add to Read List</span></td>
 										</tr>
 									</tbody>

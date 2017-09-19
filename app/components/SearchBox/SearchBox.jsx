@@ -1,4 +1,5 @@
 import React from 'react';
+import {Route} from 'react-router-dom';
 
 import SearchForm from 'SearchForm';
 import SearchDisplay from 'SearchDisplay';
@@ -64,7 +65,7 @@ class SearchBox extends React.Component {
 
 		function renderResults() {
 			if (res.length !== 0) {
-				return (<SearchDisplay content={res} mode="searchRes" />)
+				return (<SearchDisplay content={res}/>)
 			}
 			else {
 				return;
@@ -74,7 +75,8 @@ class SearchBox extends React.Component {
 
 		return (
 			<div>
-				<SearchForm onSearch={this.handleSearch.bind(this)}></SearchForm>
+				<SearchForm onSearch={this.handleSearch.bind(this)} buttonClass="expanded button" classNameA="row" classNameB="columns medium-6 large-4 small-centered">
+				</SearchForm>
 				<br/>
 				<br/><br/><br/>
 				{renderResults()}

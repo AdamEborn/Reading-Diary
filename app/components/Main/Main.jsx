@@ -1,5 +1,10 @@
 import React from 'react';
 import NavBar from 'NavBar';
+import {Route, Switch} from 'react-router-dom';
+
+import HomePage from 'HomePage';
+import SearchBox from 'SearchBox';
+import Wishlist from 'Wishlist';
 
 class Main extends React.Component{
   constructor(props) {
@@ -9,9 +14,12 @@ class Main extends React.Component{
   render() {
     return (
       <div>
-        <NavBar></NavBar>
-        <br/>
-        {this.props.children}
+        <NavBar/>
+        <Switch>
+          <Route exact path="/" component={HomePage}/>
+          <Route path="/search" component={SearchBox}/>
+          <Route path="/wishlist" component={Wishlist}/>
+          </Switch>
       </div>
     )
   }
