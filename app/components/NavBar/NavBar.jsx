@@ -1,10 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
-// import HomePage from 'HomePage';
-// import SearchBox from 'SearchBox';
-// import Wishlist from 'Wishlist';
-
  class NavBar extends React.Component {
 	constructor(props) {
 		super(props);
