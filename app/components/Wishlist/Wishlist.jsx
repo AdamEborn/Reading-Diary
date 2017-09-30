@@ -28,7 +28,7 @@ componentWillMount() {
 					author: data[key].author,
 					bookDescription: data[key].bookDescription,
 					link: data[key].link,
-					thumbnailPic: data[key].thumbnailPic
+					thumbnail: data[key].thumbnail
 				}
 			}
 			arr.push(book)

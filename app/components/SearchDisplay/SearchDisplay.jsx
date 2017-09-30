@@ -32,6 +32,7 @@ class SearchDisplay extends React.Component {
 			wishlistUrls: arr
 		})
 	}.bind(this));
+
 }
 
 	saveBookToWishlist(bookToSave) {
@@ -42,7 +43,7 @@ class SearchDisplay extends React.Component {
 			author: bookToSave.author,
 			bookDescription: bookToSave.bookDescription,
 			link: bookToSave.link,
-			thumbnailPic: bookToSave.thumbnailPic
+			thumbnail: bookToSave.thumbnail
 		}
 		var newPushRef = reference.push(savedBook);
 		reference.child(newPushRef.key).update({
@@ -75,7 +76,7 @@ class SearchDisplay extends React.Component {
 								<table>
 									<tbody>
 										<tr>
-											<td rowSpan="4"> <img src={book.thumbnailPic}/> </td>
+											<td rowSpan="4"> <img src={book.thumbnail}/> </td>
 											<td colSpan="3">{book.bookTitle}</td>
 										</tr>
 										<tr>
@@ -104,7 +105,7 @@ class SearchDisplay extends React.Component {
 							<table>
 							<tbody>
 								<tr>
-									<td rowSpan="4"><img src={book.thumbnailPic}/></td>
+									<td rowSpan="4"><img src={book.thumbnail}/></td>
 									<td colSpan="3" onClick={this.revealModal}>{book.bookTitle}</td>
 								</tr>
 								<tr>

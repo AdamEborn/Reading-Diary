@@ -28,24 +28,8 @@ class SearchBox extends React.Component {
 			this.bookTitle = objInArr.volumeInfo.title;
 			this.publishedDate = objInArr.volumeInfo.publishedDate.slice(0,4),
 			this.author = objInArr.volumeInfo.authors;
-			this.bookDescriptionAssigner = function() {
-				if (objInArr.volumeInfo.hasOwnProperty('description')){
-					return (objInArr.volumeInfo.description.substring(0, 350) + "...")
-				}
-			else {
-				return "No Description Available";
-				}
-			}
-			this.bookDescription = this.bookDescriptionAssigner();
-			this.thumbnail = function() {
-				if (objInArr.volumeInfo.hasOwnProperty('imageLinks')){
-				return (objInArr.volumeInfo.imageLinks.smallThumbnail)
-			}
-				else {
-					return "No Thumbnail Available";
-				}
-			}
-			this.thumbnailPic = this.thumbnail();
+			this.bookDescription = objInArr.volumeInfo.hasOwnProperty('description') ? objInArr.volumeInfo.description.substring(0, 350) + "..." : "No Description Available"
+			this.thumbnail = objInArr.volumeInfo.hasOwnProperty('imageLinks') ? objInArr.volumeInfo.imageLinks.smallThumbnail : "No Thumbnail Available"
 		};
 
 		var finalRes = [];
